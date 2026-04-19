@@ -18,9 +18,7 @@ jobs:
           if [ ! -f test_main.py ]; then
             echo "test_main.py NOT FOUND" > napaka.txt
             exit 1
-          else
-            echo "" > napaka.txt
-          fi
+          fi  
 
       - name: Upload artifact (napaka)
         uses: actions/upload-artifact@v4
