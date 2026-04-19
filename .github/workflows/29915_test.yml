@@ -41,6 +41,9 @@ jobs:
         with:
           name: napaka
 
+      - name: Debug napaka
+        run: cat napaka.txt
+
       - name: Check error file
         run: |
           if [ -s napaka.txt ]; then
