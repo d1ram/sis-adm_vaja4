@@ -2,7 +2,7 @@ name: 29915_test
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main ] # only on pushing into branch MAIN
 
 jobs:
 
@@ -13,8 +13,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # Проверка наличия тестов
-      - name: Check if tests exist
+      - name: Check if tests exist # checking if test exists
         run: |
           if [ ! -f test_main.py ]; then
             echo "test_main.py NOT FOUND" > napaka.txt
@@ -23,8 +22,7 @@ jobs:
             > napaka.txt
           fi
 
-      # Сохраняем результат проверки
-      - name: Upload artifact
+      - name: Upload artifact # uploading napaka.txt
         uses: actions/upload-artifact@v4
         with:
           name: napaka
@@ -37,14 +35,14 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [3.11, 3.12]   # просто логика матрицы
+        python-version: [3.11, 3.12] # using matrix for testing in different matrix versions. can be accessed by ${{ matrix.python-version }} (in theory)
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Download artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4 # downloading napaka from last check
         with:
           name: napaka
 
@@ -56,9 +54,9 @@ jobs:
             exit 1
           fi
 
-      # venv через системный python3
-      - name: Create venv
+      - name: Create venv # venv through system python3
         run: |
+          echo "creating venv by ${{ matrix.python-version }}"
           python3 -m venv venv
 
       - name: Install dependencies
