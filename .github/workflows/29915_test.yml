@@ -54,8 +54,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python3 -m pip install -r requirements.txt
+          source venv/bin/activate
+          python -m pip install -r requirements.txt
 
       - name: Run tests
         run: |
-          pytest -v
+          python -m pytest -v
