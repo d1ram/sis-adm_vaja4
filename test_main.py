@@ -14,5 +14,5 @@ def test_horizon_flat():
     img[50:] = 1
 
     angle = oceni_orientacijo_horizonta(img)
-
+    ## new line
     assert abs(abs(angle) - 90) < 10
